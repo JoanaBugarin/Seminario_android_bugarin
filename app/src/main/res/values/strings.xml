@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VideojuegosApp</string>
+    <string name="games_list_title">Lista de Videojuegos</string>
+    <string name="wishlist_title">Lista de Deseados</string>
+    <string name="filter_title">Filtros</string>
+    <string name="game_details_title">Detalles del Juego</string>
+    <string name="search_hint">Buscar videojuegos...</string>
+    <string name="loading">Cargando...</string>
+    <string name="error_loading_games">Error al cargar los videojuegos</string>
+    <string name="error_loading_filters">Error al cargar los filtros</string>
+    <string name="no_games_found">No se encontraron videojuegos</string>
+    <string name="no_search_results">No se encuentra el videojuego buscado</string>
+    <string name="retry">Reintentar</string>
+    <string name="apply_filters">Aplicar Filtros</string>
+    <string name="clear_filters">Limpiar Filtros</string>
+    <string name="platform_filter">Plataforma</string>
+    <string name="genre_filter">Género</string>
+    <string name="sort_by">Ordenar por</string>
+    <string name="sort_name">Nombre</string>
+    <string name="sort_released">Fecha de lanzamiento</string>
+    <string name="sort_rating">Rating</string>
+    <string name="add_to_wishlist">Agregar a deseados</string>
+    <string name="remove_from_wishlist">Quitar de deseados</string>
+    <string name="share_game">Compartir juego</string>
+    <string name="open_website">Abrir sitio web</string>
+    <string name="no_website_available">Sitio web no disponible</string>
+    <string name="error_no_internet">Sin conexión a internet</string>
+    <string name="error_server">Error del servidor</string>
+    <string name="error_unknown">Error desconocido</string>
+    <string name="released">Lanzado:</string>
+    <string name="rating">Rating:</string>
+    <string name="platforms">Plataformas:</string>
+    <string name="genres">Géneros:</string>
+    <string name="description">Descripción:</string>
+    <string name="no_description">Sin descripción disponible</string>
+</resources>
+
+

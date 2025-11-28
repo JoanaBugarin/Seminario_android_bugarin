@@ -2,8 +2,9 @@ package com.seminario.videojuegosapp.ui.screens.filters
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -113,12 +114,9 @@ fun FiltersScreen(
                     
                     item {
                         FilterChipsSection(
-                            items = platforms.map { it.name },
+                            items = platforms.map { it.id.toString() to it.name },
                             selectedItems = selectedPlatforms,
-                            onItemToggle = { platform ->
-                                val platformId = platforms.find { it.name == platform }?.id?.toString() ?: return@FilterChipsSection
-                                viewModel.togglePlatform(platformId)
-                            }
+                            onItemToggle = viewModel::togglePlatform
                         )
                     }
                     
@@ -136,12 +134,9 @@ fun FiltersScreen(
                     
                     item {
                         FilterChipsSection(
-                            items = genres.map { it.name },
+                            items = genres.map { it.id.toString() to it.name },
                             selectedItems = selectedGenres,
-                            onItemToggle = { genre ->
-                                val genreId = genres.find { it.name == genre }?.id?.toString() ?: return@FilterChipsSection
-                                viewModel.toggleGenre(genreId)
-                            }
+                            onItemToggle = viewModel::toggleGenre
                         )
                     }
                     
@@ -152,7 +147,7 @@ fun FiltersScreen(
                     item {
                         Button(
                             onClick = {
-                                // Aplicar filtros y navegar de vuelta
+                                viewModel.saveCurrentFilters()
                                 onNavigateBack()
                             },
                             modifier = Modifier.fillMaxWidth()
@@ -201,28 +196,28 @@ fun SortOptionsSection(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun FilterChipsSection(
-    items: List<String>,
+    items: List<Pair<String, String>>,
     selectedItems: List<String>,
     onItemToggle: (String) -> Unit
 ) {
-    LazyColumn(
+    FlowRow(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(items) { item ->
-            val itemId = items.indexOf(item).toString()
+        items.forEach { (id, label) ->
             FilterChip(
-                selected = selectedItems.contains(itemId),
-                onClick = { onItemToggle(item) },
+                selected = selectedItems.contains(id),
+                onClick = { onItemToggle(id) },
                 label = {
                     Text(
-                        text = item,
+                        text = label,
                         maxLines = 1
                     )
-                },
-                modifier = Modifier.fillMaxWidth()
+                }
             )
         }
     }
@@ -252,5 +247,7 @@ fun ErrorScreen(
         }
     }
 }
+
+
 
 

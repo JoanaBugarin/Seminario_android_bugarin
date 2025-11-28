@@ -114,7 +114,7 @@ class FiltersViewModel @Inject constructor(
         _selectedSortOption.value = sortOption
     }
     
-    fun applyFilters(): GameFilters {
+    private fun currentFilters(): GameFilters {
         return GameFilters(
             platforms = _selectedPlatforms.value,
             genres = _selectedGenres.value,
@@ -122,10 +122,20 @@ class FiltersViewModel @Inject constructor(
         )
     }
     
+    fun saveCurrentFilters() {
+        val filters = currentFilters()
+        viewModelScope.launch {
+            repository.saveFilters(filters)
+        }
+    }
+    
     fun clearFilters() {
         _selectedPlatforms.value = emptyList()
         _selectedGenres.value = emptyList()
         _selectedSortOption.value = null
+        viewModelScope.launch {
+            repository.clearSavedFilters()
+        }
     }
     
     fun loadSavedFilters(filters: GameFilters) {

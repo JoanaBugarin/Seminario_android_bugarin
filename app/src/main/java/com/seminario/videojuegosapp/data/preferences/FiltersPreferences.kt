@@ -36,7 +36,9 @@ class FiltersPreferences @Inject constructor(
         dataStore.edit { preferences ->
             preferences[PLATFORMS_KEY] = filters.platforms.toSet()
             preferences[GENRES_KEY] = filters.genres.toSet()
-            preferences[ORDERING_KEY] = filters.ordering as String
+            filters.ordering?.let {
+                preferences[ORDERING_KEY] = it
+            } ?: preferences.remove(ORDERING_KEY)
         }
     }
     
@@ -48,5 +50,8 @@ class FiltersPreferences @Inject constructor(
         }
     }
 }
+
+
+
 
 

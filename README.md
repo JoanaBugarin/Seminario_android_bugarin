@@ -132,3 +132,6 @@ app/src/main/java/com/seminario/videojuegosapp/
 Este proyecto es parte de un seminario académico y está destinado únicamente para fines educativos.
 
 
+
+
+
